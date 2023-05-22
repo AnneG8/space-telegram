@@ -8,3 +8,5 @@ env.bak/
 venv.bak/
 
 /images/
+
+**/__pycache__
