@@ -45,7 +45,8 @@ def get_images_for_dir(images_dir):
 
 def post_image(image, token, chat_id):
 	bot = telegram.Bot(token=token)
-	bot.send_photo(chat_id=chat_id, photo=open(image, 'rb'))
+	with open(image, 'rb') as file:
+		bot.send_photo(chat_id=chat_id, photo=file)
 
 
 def main():
