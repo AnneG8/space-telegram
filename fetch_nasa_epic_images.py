@@ -1,8 +1,8 @@
 from pathlib import Path
 from dotenv import load_dotenv
 from urllib.parse import urljoin
+from datetime import datetime
 import requests
-import re
 import os
 
 from fetch_image import fetch_image
@@ -15,10 +15,10 @@ def fetch_nasa_epic_images(token):
 	response.raise_for_status()
 	for num, answer in enumerate(response.json()):
 		image = answer['image']
-		date = re.split('-| ', answer['date'])
+		date = datetime.fromisoformat(answer['date'])
 		url = urljoin(
 			'https://api.nasa.gov/EPIC/archive/natural/',
-			f'{date[0]}/{date[1]}/{date[2]}/png/{image}.png'
+			'{0:%Y}/{0:%m}/{0:%d}/png/{1}.png'.format(date, image)
 		)
 		fetch_image(f'nasa_epic{num}.png', url, payload)
 
