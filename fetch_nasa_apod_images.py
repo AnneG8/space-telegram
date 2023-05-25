@@ -30,7 +30,7 @@ def main():
 	load_dotenv()
 	books_dir = 'images'
 	Path(books_dir).mkdir(parents=True, exist_ok=True)
-	nasa_token = os.getenv('API_NASA_TOKEN')
+	nasa_token = os.environ['API_NASA_TOKEN']
 	fetch_nasa_apod_images(nasa_token)
 
 

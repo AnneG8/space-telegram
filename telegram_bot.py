@@ -50,8 +50,8 @@ def post_image(image, token, chat_id):
 
 def main():
 	load_dotenv()
-	telegram_token = os.getenv('TELEGRAM_TOKEN')
-	chat_id = os.getenv('CHAT_ID')
+	telegram_token = os.environ['TELEGRAM_TOKEN']
+	chat_id = os.environ['CHAT_ID']
 
 	parser = create_parser()
 	args = parser.parse_args()

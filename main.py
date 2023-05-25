@@ -12,11 +12,11 @@ def main():
 	images_dir = 'images'
 	Path(images_dir).mkdir(parents=True, exist_ok=True)
 	fetch_spacex_launch()
-	nasa_token = os.getenv('API_NASA_TOKEN')
+	nasa_token = os.environ['API_NASA_TOKEN']
 	fetch_nasa_apod_images(nasa_token)
 	fetch_nasa_epic_images(nasa_token)
 	
 
 if __name__ == '__main__':
     main()
-		
+	

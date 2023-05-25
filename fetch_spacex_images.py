@@ -6,7 +6,7 @@ from fetch_image import fetch_image
 import pprint
 
 
-def fetch_spacex_launch(launch_id=''):
+def fetch_spacex_launch(launch_id=0):
 	base_url = 'https://api.spacexdata.com/v5/launches/'
 	if launch_id:
 		payload = {'id': args.id}
@@ -27,8 +27,8 @@ def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument(
 		'-id', 
-		type=str,
-		default='', const='', 
+		type=int,
+		default=0, const=0, 
         nargs='?'
     )
 	args = parser.parse_args()

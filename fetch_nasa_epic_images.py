@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from urllib.parse import urljoin
 import requests
 import re
+import os
 
 from fetch_image import fetch_image
 
@@ -26,7 +27,7 @@ def main():
 	load_dotenv()
 	books_dir = 'images'
 	Path(books_dir).mkdir(parents=True, exist_ok=True)
-	nasa_token = os.getenv('API_NASA_TOKEN')
+	nasa_token = os.environ['API_NASA_TOKEN']
 	fetch_nasa_epic_images(nasa_token)
 
 
