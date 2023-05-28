@@ -1,18 +1,19 @@
 import argparse
 import requests
 from pathlib import Path
+from urllib.parse import urljoin
 from fetch_image import fetch_image
 
 
-def fetch_spacex_launch(launch_id):
+def fetch_spacex_launch(launch_id=''):
 	base_url = 'https://api.spacexdata.com/v5/launches/'
-	payload = {'id': launch_id}
-	response = requests.get(base_url, params=payload)
+	if launch_id:
+		launch_id = 'latest'
+	url = urljoin(base_url, launch_id)
+	response = requests.get(url)
 	response.raise_for_status()
-	images = list()
-	for answ in response.json():
-		for url in answ['links']['flickr']['original']:
-			images.append(url)
+	images = response.json()['links']['flickr']['original']
+	pprint.pprint(response.json())
 	for image_num, image_url in enumerate(images):
 		fetch_image(f'spacex{image_num}.jpg', image_url)
 
@@ -25,7 +26,7 @@ def main():
 	parser.add_argument(
 		'-id', 
 		type=str,
-		default='latest', const='latest', 
+		default='', const='', 
         nargs='?'
     )
 	args = parser.parse_args()
