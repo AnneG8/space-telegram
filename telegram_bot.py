@@ -69,8 +69,13 @@ def main():
 			path = Path(image)
 			if not (path.exists() and path.is_file()):
 				continue
-			post_image(image, telegram_token, chat_id)
-			time.sleep(period * 3600)
+			while True:
+				try:
+					post_image(image, telegram_token, chat_id)
+					time.sleep(period * 3600)
+					break
+				except telegram.error.NetworkError:
+					time.sleep(3)
 
 
 if __name__ == '__main__':
