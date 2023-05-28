@@ -8,12 +8,8 @@ import pprint
 
 def fetch_spacex_launch(launch_id):
 	base_url = 'https://api.spacexdata.com/v5/launches/'
-	if launch_id:
-		payload = {'id': launch_id}
-		response = requests.get(base_url, params=payload)
-	else:
-		url = urljoin(base_url, 'latest')
-		response = requests.get(url)
+	payload = {'id': launch_id}
+	response = requests.get(base_url, params=payload)
 	response.raise_for_status()
 	images = list()
 	for answ in response.json():
@@ -31,7 +27,7 @@ def main():
 	parser.add_argument(
 		'-id', 
 		type=str,
-		default='', const='', 
+		default='latest', const='latest', 
         nargs='?'
     )
 	args = parser.parse_args()
