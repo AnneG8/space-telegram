@@ -1,9 +1,7 @@
 import argparse
 import requests
 from pathlib import Path
-from urllib.parse import urljoin
 from fetch_image import fetch_image
-import pprint
 
 
 def fetch_spacex_launch(launch_id):
