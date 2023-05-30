@@ -6,8 +6,6 @@ from fetch_image import fetch_image
 
 def fetch_spacex_launch(launch_id='latest'):
     url = 'https://api.spacexdata.com/v5/launches/{}/'
-    #if not launch_id:
-    #    launch_id = 'latest'
     response = requests.get(url.format(launch_id))
     response.raise_for_status()
     images = response.json()['links']['flickr']['original']
